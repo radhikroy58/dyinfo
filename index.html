@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f7f5f0">
+<meta name="description" content="A personal anime journal, artwork collection, and social links.">
+<title> About DY </title>
+<style>
+  /* =========================================================
+     CUSTOMIZE HERE
+     - Palette: edit the colors in :root
+     - Images: replace the image paths in the HTML
+     - Social links: replace the # values in the social cards
+     - Playlist: replace YOUR_PLAYLIST_ID
+     ========================================================= */
+  :root {
+    --bg: #f7f5f0;
+    --paper: #fffefa;
+    --ink: #292722;
+    --muted: #77736b;
+    --line: #e7e1d8;
+    --accent: #927b68;
+    --sage: #dfe5dc;
+    --rose: #eadbd5;
+    --sand: #e9e1d4;
+    --blue: #dce5e9;
+    --shadow: 0 22px 60px rgba(70, 58, 44, .09);
+    --max: 1240px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    background:
+      radial-gradient(ellipse at 2% 10%, rgba(223,229,220,.55), transparent 27rem),
+      radial-gradient(ellipse at 98% 29%, rgba(234,219,213,.5), transparent 30rem),
+      radial-gradient(ellipse at 0% 75%, rgba(220,229,233,.48), transparent 26rem),
+      radial-gradient(ellipse at 100% 92%, rgba(233,225,212,.58), transparent 30rem),
+      var(--bg);
+    font: 15px/1.7 Arial, Helvetica, sans-serif;
+  }
+  img { display: block; width: 100%; object-fit: cover; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: min(var(--max), calc(100% - 64px)); margin-inline: auto; }
+
+  /* Welcome opening animation */
+  .opening {
+    position: fixed; inset: 0; z-index: 30;
+    display: grid; place-items: center; text-align: center;
+    background: var(--bg);
+    animation: opening-out .9s 2.1s cubic-bezier(.77,0,.18,1) forwards;
+  }
+  .opening::before, .opening::after {
+    content: ""; position: absolute; width: 30vw; height: 30vw;
+    max-width: 360px; max-height: 360px; border-radius: 50%;
+    filter: blur(65px); opacity: .42; pointer-events: none;
+  }
+  .opening::before { background: var(--sage); top: -12%; left: -8%; }
+  .opening::after { background: var(--rose); bottom: -14%; right: -8%; }
+  .opening-inner { position: relative; z-index: 1; animation: welcome-in 1.2s ease both; }
+  .opening-kicker { color: var(--accent); font-size: .65rem; letter-spacing: .32em; text-transform: uppercase; }
+  .opening-title { margin: 17px 0; font: clamp(2.8rem,8vw,6rem)/.95 Georgia,serif; letter-spacing: -.055em; }
+  .opening-line { width: 0; height: 1px; margin: 24px auto 0; background: var(--accent); animation: line-grow .8s .4s ease forwards; }
+  @keyframes welcome-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes line-grow { to { width: 58px; } }
+  @keyframes opening-out { to { opacity: 0; visibility: hidden; pointer-events: none; } }
+
+  header {
+    height: 82px; display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { font-size: .78rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+  .brand span { color: var(--accent); }
+  nav { display: flex; gap: 28px; color: var(--muted); font-size: .8rem; }
+  nav a { transition: color .2s; }
+  nav a:hover { color: var(--accent); }
+
+  .hero { padding: 52px 0 90px; }
+  .hero-top { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin-bottom: 25px; }
+  .eyebrow { color: var(--accent); font-size: .66rem; font-weight: 700; letter-spacing: .23em; text-transform: uppercase; }
+  h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+  h1 { margin: 12px 0 0; font-size: clamp(3.5rem,7vw,6.5rem); line-height: .92; letter-spacing: -.065em; }
+  .hero-intro { max-width: 310px; margin: 0 0 5px; color: var(--muted); font-size: .86rem; }
+  .hero-image-frame { position: relative; height: min(69vw,700px); min-height: 430px; overflow: hidden; background: var(--sage); box-shadow: var(--shadow); }
+  .hero-image { height: 100%; object-position: center 42%; transform: scale(1.045); animation: hero-arrive 1.35s 2.3s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes hero-arrive { to { transform: scale(1); } }
+  .image-caption { position: absolute; left: 24px; bottom: 22px; padding: 8px 13px; background: #fffef0e8; color: #4d4942; font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; }
+  .hero-side-note { position: absolute; right: 22px; top: 22px; color: white; font-size: .65rem; letter-spacing: .18em; writing-mode: vertical-rl; text-shadow: 0 1px 8px #0008; }
+
+  section { padding: 82px 0; border-top: 1px solid var(--line); }
+  .about { display: grid; grid-template-columns: .8fr 1.2fr; gap: 90px; align-items: start; }
+  h2 { margin: 10px 0; font-size: clamp(2.3rem,4vw,3.7rem); line-height: 1.02; letter-spacing: -.05em; }
+  .about-copy { max-width: 640px; margin: 0; padding-top: 10px; color: var(--muted); }
+
+  .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 30px; }
+  .section-heading > p { max-width: 320px; margin: 0; color: var(--muted); font-size: .85rem; }
+
+  /* Four large featured images. Sharp corners, no borders or outlines. */
+  .featured-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 38px 24px; }
+  .feature-card { min-width: 0; }
+  .feature-image-wrap { height: 520px; overflow: hidden; background: var(--soft, #eae5dc); box-shadow: var(--shadow); }
+  .feature-card:nth-child(2) .feature-image-wrap { background: var(--rose); }
+  .feature-card:nth-child(3) .feature-image-wrap { background: var(--blue); }
+  .feature-card:nth-child(4) .feature-image-wrap { background: var(--sand); }
+  .feature-image { height: 100%; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+  .feature-card:hover .feature-image { transform: scale(1.035); }
+  .feature-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-top: 13px; }
+  .feature-meta h3 { margin: 0; font-size: 1.55rem; }
+  .feature-meta span { color: var(--muted); font-size: .67rem; letter-spacing: .12em; text-transform: uppercase; }
+
+  /* Only three social links: X, Instagram, MyAnimeList */
+  .social-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .social-card {
+    min-height: 170px; padding: 25px; display: flex; flex-direction: column;
+    justify-content: space-between; background: var(--paper);
+    box-shadow: 0 14px 38px rgba(70,58,44,.055);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .social-card:nth-child(1) { background: #eef0ed; }
+  .social-card:nth-child(2) { background: #f0e7e2; }
+  .social-card:nth-child(3) { background: #e8edf0; }
+  .social-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+  .social-name { font: 1.8rem Georgia,serif; }
+  .social-bottom { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
+  .social-arrow { color: var(--accent); font-size: 1.2rem; }
+
+  .music-card { padding: 30px; background: rgba(255,254,250,.88); box-shadow: var(--shadow); }
+  .music-card h3 { margin: 0; font-size: 2rem; }
+  .music-card p { margin: 4px 0 0; color: var(--muted); font-size: .85rem; }
+  .player { display: block; width: 100%; height: 152px; margin-top: 22px; border: 0; background: var(--sage); }
+  footer { padding: 30px 0 42px; color: var(--muted); font-size: .75rem; border-top: 1px solid var(--line); }
+  .footer-row { display: flex; justify-content: space-between; gap: 15px; }
+
+  .reveal { opacity: 1; transform: none; }
+  .js-motion .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+  .js-motion .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 780px) {
+    .wrap { width: calc(100% - 30px); }
+    header { height: 70px; } nav { gap: 14px; font-size: .73rem; }
+    .hero { padding: 42px 0 65px; }
+    .hero-top { display: block; } .hero-intro { margin-top: 17px; }
+    .hero-image-frame { height: 112vw; min-height: 400px; max-height: 630px; }
+    section { padding: 62px 0; }
+    .about { grid-template-columns: 1fr; gap: 12px; }
+    .featured-grid { grid-template-columns: 1fr; gap: 30px; }
+    .feature-image-wrap { height: 112vw; min-height: 390px; max-height: 650px; }
+    .social-grid { grid-template-columns: 1fr; gap: 12px; }
+    .social-card { min-height: 130px; }
+    .section-heading { align-items: start; flex-direction: column; }
+    .music-card { padding: 20px; }
+  }
+  @media (max-width: 420px) {
+    .brand { font-size: .67rem; letter-spacing: .13em; }
+    nav { gap: 9px; }
+    .footer-row { flex-direction: column; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,*::before,*::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+    .opening { display: none; }
+    .js-motion .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="opening" aria-label="Welcome">
+    <div class="opening-inner">
+      <div class="opening-kicker"> Personal But Public </div>
+      <div class="opening-title">Welcome<br>if youre interested</div>
+      <div class="opening-line"></div>
+    </div>
+  </div>
+
+  <header class="wrap">
+    <a class="brand" href="#home"> My <span> Gallery </span></a>
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#featured">Featured</a>
+      <a href="#socials">Socials</a>
+      <a href="#music">Music</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="home" style="border:0">
+      <div class="hero-top reveal">
+        <div>
+          <div class="eyebrow">Made it because juts feel like it</div>
+          <h1>Gallery and info<br></h1>
+        </div>
+        <p class="hero-intro">A little storehouse of my images but not for showing you. After many years just remember I need to make this </p>
+      </div>
+      <div class="hero-image-frame">
+        <img class="hero-image" src="03.jpg" alt="Main featured anime artwork">
+        <span class="image-caption"> পূজা ২০২৬ </span>
+        <span class="hero-side-note">A WORLD OF STORIES</span>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap about reveal">
+        <div>
+          <div class="eyebrow">A little introduction</div>
+          <h2>The name of this person<br>Is DY (camouflage)</h2>
+        </div>
+        <p class="about-copy">My names DY (camouflage). I'm a student of a college in bangladesh. I passed my ssc examination in 2026.</p>
+      </div>
+    </section>
+
+    <section id="featured">
+      <div class="wrap">
+        <div class="section-heading reveal">
+          <div><div class="eyebrow">Own Fancy</div><h2>#image</h2></div>
+          <p>I will be uploading my Favourite images here </p>
+        </div>
+        <div class="featured-grid">
+          <article class="feature-card reveal">
+            <div class="feature-image-wrap"><img class="feature-image" src="01.jpg" alt="Featured artwork one" loading="lazy"></div>
+            <div class="feature-meta"><h3>Look at my teeth 🫣 </h3><span>01 / </span></div>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-image-wrap"><img class="feature-image" src="02.jpg" alt="Featured artwork two" loading="lazy"></div>
+            <div class="feature-meta"><h3>my posture and the cameraman was bad</h3><span>02 / </span></div>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-image-wrap"><img class="feature-image" src="04.jpg" alt="Featured artwork three" loading="lazy"></div>
+            <div class="feature-meta"><h3>Big Bro</h3><span>03 /</span></div>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-image-wrap"><img class="feature-image" src="05.jpg" alt="Featured artwork four" loading="lazy"></div>
+            <div class="feature-meta"><h3>Fourth feature</h3><span>04 / Favorite</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="socials">
+      <div class="wrap">
+        <div class="section-heading reveal">
+          <div><div class="eyebrow">Find me online</div><h2>Social spaces.</h2></div>
+          <p>Three simple links. Add your own profile URLs below.</p>
+        </div>
+        <div class="social-grid reveal">
+          <a class="social-card" href="https://x.com/dy_roy57809" target="_blank" rel="noopener noreferrer">
+            <span class="social-name">X</span>
+            <span class="social-bottom"><span>Follow on X</span><span class="social-arrow">↗</span></span>
+          </a>
+          <a class="social-card" href="https://www.instagram.com/dy_roy.dippro?srtk=MXUxMjhxcW8yaGFtYw==" target="_blank" rel="noopener noreferrer">
+            <span class="social-name">Instagram</span>
+            <span class="social-bottom"><span>Find me on Instagram</span><span class="social-arrow">↗</span></span>
+          </a>
+          <a class="social-card" href="https://myanimelist.net/profile/dyroy/ " target="_blank" rel="noopener noreferrer">
+            <span class="social-name">MyAnimeList</span>
+            <span class="social-bottom"><span>View my anime list</span><span class="social-arrow">↗</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="music">
+      <div class="wrap reveal">
+        <div class="eyebrow">Soundtrack</div>
+        <h2>Listen along.</h2>
+        <div class="music-card" style="margin-top:24px">
+          <h3>My playlist</h3>
+          <p>Check this playlist its not like your typical ones</p>
+          <iframe class="player" src="https://www.youtube-nocookie.com/embed/videoseries?list=PL7KMydA4HR2l_eq53E7nWf4gVPp_bE0C7"
+            title="YouTube Music playlist" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-row"><span>© 2026 DY</span><span>Designed as a personal draft post</span></div></footer>
+
+<script>
+  // Small scroll reveal only; no external libraries or frameworks.
+  document.documentElement.classList.add("js-motion");
+  const items = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(item => observer.observe(item));
+  } else {
+    items.forEach(item => item.classList.add("visible"));
+  }
+</script>
+</body>
+</html>
